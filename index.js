@@ -1,9 +1,11 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
   
+const requestIp = require('request-ip');
+    
 app.get('/',function(request, response) {
-    var idAddress = request.header('x-forwarded-for') || request.connection.remoteAddress;
-    response.json({"ip": idAddress});
+  const clientIp = requestIp.getClientIp(request);
+  response.json({"ip": clientIp});
 });
   
 app.listen(3000, () => console.log(`App listening on port 3000`))
