@@ -8,4 +8,4 @@ app.get('/',function(request, response) {
   response.json({"ip": clientIp});
 });
   
-app.listen(3000, () => console.log(`App listening on port 3000`))
+app.listen(PORT || 3000, () => console.log(`App listening on port 3000`))
