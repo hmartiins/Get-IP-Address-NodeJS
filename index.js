@@ -1,11 +1,11 @@
-const app = require('express')();
+const http = require("http");
 
-app.get('/', (request, response) => {
-  response.json({"client-ip": request.ip})
-});
+const requestListener = function (req, res) {
+  res.end("Your IP Addresss is: " + req.socket.localAddress);
+};
 
+const server = http.createServer(requestListener);
 const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log('server start!');
 });
